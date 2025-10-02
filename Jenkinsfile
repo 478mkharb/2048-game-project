@@ -1,35 +1,39 @@
 pipeline {
     agent any
 
+    environment {
+        COMPOSE_PROJECT_NAME = "2048-game-pipeline"
+    }
+
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/478mkharb/2048-game-project.git'
+                checkout scm
             }
         }
 
-        stage('Build Docker Images') {
+        stage('Build & Deploy') {
             steps {
-                sh 'docker build -t 2048-backend ./backend'
-                sh 'docker build -t 2048-frontend ./frontend'
-            }
-        }
+                script {
+                    // Navigate to workspace
+                    dir("${WORKSPACE}") {
+                        // Stop and remove previous containers
+                        sh 'docker compose down || true'
 
-        stage('Deploy with Docker Compose') {
-            steps {
-                sh 'docker-compose down || true'
-                sh 'docker-compose up -d'
+                        // Build images and start containers
+                        sh 'docker compose up -d --build'
+                    }
+                }
             }
         }
     }
 
     post {
         success {
-            echo '✅ 2048 Game deployed successfully!'
+            echo "2048 Game deployed successfully!"
         }
         failure {
-            echo '❌ Build or deploy failed. Check console logs.'
+            echo "Deployment failed!"
         }
     }
 }
