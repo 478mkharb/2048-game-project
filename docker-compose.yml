@@ -1,17 +1,27 @@
+version: "3.9"
+
 services:
   backend:
     build: ./backend
     ports:
-      - "5001:5000"          # Host port 5001 → container port 5000 (avoids conflicts)
+      - "5001:5000"
     volumes:
-      - ./backend:/app       # Mount backend folder (live code)
-      - ./backend/data:/app/data  # Persist SQLite DB
+      - ./backend:/app
+      - ./backend/data:/app/data
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
 
   frontend:
     build: ./frontend
     ports:
-      - "8080:80"           # Access game at localhost:8080
+      - "8080:80"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
     restart: unless-stopped
+
