@@ -1,0 +1,100 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Container */
+.container {
+  width: 350px; /* wider to fit the board */
+  margin: 40px auto;
+  text-align: center;
+}
+
+/* Heading */
+h1 {
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #333;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.controls button {
+  padding: 5px 10px;
+  cursor: pointer;
+  background-color: #8f7a66;
+  border: none;
+  color: white;
+  border-radius: 3px;
+}
+
+.controls .score,
+.controls .best {
+  font-weight: bold;
+}
+
+/* Board wrapper */
+.board-wrapper {
+  padding: 10px;
+  background-color: #bbada0;
+  border-radius: 8px;
+  display: inline-block; /* center properly */
+}
+
+/* Board */
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 75px); /* 4 tiles of 75px */
+  grid-gap: 10px;
+  background: #bbada0;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+/* Tiles */
+.tile {
+  width: 75px;
+  height: 75px;
+  line-height: 75px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 3px;
+  color: #776e65;
+  background-color: #cdc1b4;
+  transition: all 0.1s ease-in-out;
+}
+
+/* Tile colors */
+.tile.t2 { background-color: #eee4da; color: #776e65; }
+.tile.t4 { background-color: #ede0c8; color: #776e65; }
+.tile.t8 { background-color: #f2b179; color: #f9f6f2; }
+.tile.t16 { background-color: #f59563; color: #f9f6f2; }
+.tile.t32 { background-color: #f67c5f; color: #f9f6f2; }
+.tile.t64 { background-color: #f65e3b; color: #f9f6f2; }
+.tile.t128 { background-color: #edcf72; color: #f9f6f2; font-size: 20px; }
+.tile.t256 { background-color: #edcc61; color: #f9f6f2; font-size: 20px; }
+.tile.t512 { background-color: #edc850; color: #f9f6f2; font-size: 20px; }
+.tile.t1024 { background-color: #edc53f; color: #f9f6f2; font-size: 18px; }
+.tile.t2048 { background-color: #edc22e; color: #f9f6f2; font-size: 18px; }
+
+/* Help text */
+.help {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #776e65;
+}
+.board-wrapper {
+  padding: 10px;               /* space around the board */
+  background-color: #bbada0;   /* same as board background */
+  border-radius: 8px;          /* rounded corners */
+  display: inline-block;       /* centers the board */
+}

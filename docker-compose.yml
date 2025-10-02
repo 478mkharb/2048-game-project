@@ -1,0 +1,17 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5001:5000"          # Host port 5001 → container port 5000 (avoids conflicts)
+    volumes:
+      - ./backend:/app       # Mount backend folder (live code)
+      - ./backend/data:/app/data  # Persist SQLite DB
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:80"           # Access game at localhost:8080
+    depends_on:
+      - backend
+    restart: unless-stopped

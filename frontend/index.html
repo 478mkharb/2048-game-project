@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2048 Game</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body>
+  <div class="container">
+    <h1>2048 Game</h1>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button id="newGame">New Game</button>
+      <div class="scoreboard">
+        <div class="score">Score: <span id="score">0</span></div>
+        <div class="best">Best: <span id="best">0</span></div>
+      </div>
+    </div>
+
+    <!-- Game Board Wrapper -->
+    <div class="board-wrapper">
+      <div id="board" class="board"></div>
+    </div>
+
+    <!-- Instructions -->
+    <p class="help">Use arrow keys (← ↑ → ↓) or swipe on mobile.</p>
+  </div>
+
+  <!-- API + Game JS -->
+  <script src="api.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
